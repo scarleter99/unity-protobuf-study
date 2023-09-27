@@ -5,161 +5,170 @@ using static Define;
 
 public class MonsterController : CreatureController
 {
-	Coroutine _coPatrol;
-	Coroutine _coSearch;
+    Coroutine _coPatrol;
+    Coroutine _coSearch;
 
-	[SerializeField]
-	Vector3Int _destCellPos;
+    [SerializeField]
+    Vector3Int _destCellPos; // 목적지 좌표
 
-	[SerializeField]
-	GameObject _target;
+    [SerializeField]
+    GameObject _target;
 
-	[SerializeField]
-	float _searchRange = 5.0f;
+    [SerializeField]
+    float _searchRange = 5.0f;
 
-	public override CreatureState State
-	{
-		get { return _state; }
-		set
-		{
-			if (_state == value)
-				return;
+    public override CreatureState State
+    {
+        get { return _state; }
+        set
+        {
+            if (_state == value)
+                return;
 
-			base.State = value;
+            base.State = value;
 
-			if (_coPatrol != null)
-			{
-				StopCoroutine(_coPatrol);
-				_coPatrol = null;
-			}
+            // 상태가 바뀌면 기존 코루틴 제거
+            if (_coPatrol != null)
+            {
+                StopCoroutine(_coPatrol);
+                _coPatrol = null;
+            }
 
-			if (_coSearch != null)
-			{
-				StopCoroutine(_coSearch);
-				_coSearch = null;
-			}
-		}
-	}
+            if (_coSearch != null)
+            {
+                StopCoroutine(_coSearch);
+                _coSearch = null;
+            }
 
-	protected override void Init()
-	{
-		base.Init();
+            // 상태가 바뀌면 에니메이션도 바뀜
+            UpdateAnimation();
+        }
+    }
 
-		State = CreatureState.Idle;
-		Dir = MoveDir.None;
+    protected override void Init()
+    {
+        base.Init();
 
-		_speed = 3.0f;
-	}
+        State = CreatureState.Idle;
+        Dir = MoveDir.None;
 
-	protected override void UpdateIdle()
-	{
-		base.UpdateIdle();
+        _speed = 3.0f;
+    }
 
-		if (_coPatrol == null)
-		{
-			_coPatrol = StartCoroutine("CoPatrol");
-		}
+    protected override void UpdateIdle()
+    {
+        base.UpdateIdle();
 
-		if (_coSearch == null)
-		{
-			_coSearch = StartCoroutine("CoSearch");
-		}
-	}
+        if (_coPatrol == null)
+        {
+            _coPatrol = StartCoroutine("CoPatrol");
+        }
 
-	protected override void MoveToNextPos()
-	{
-		Vector3Int destPos = _destCellPos;
-		if (_target != null)
-		{
-			destPos = _target.GetComponent<CreatureController>().CellPos;
-		}
+        if (_coSearch == null)
+        {
+            _coSearch = StartCoroutine("CoSearch");
+        }
+    }
 
-		List<Vector3Int> path = Managers.Map.FindPath(CellPos, destPos, ignoreDestCollision: true);
-		if (path.Count < 2 || (_target != null && path.Count > 10))
-		{
-			_target = null;
-			State = CreatureState.Idle;
-			return;
-		}
+    // 실제 좌표 이동
+    protected override void MoveToNextPos()
+    {
+        Vector3Int destPos = _destCellPos;
+        if (_target != null)
+        {
+            destPos = _target.GetComponent<CreatureController>().CellPos;
+        }
 
-		Vector3Int nextPos = path[1];
-		Vector3Int moveCellDir = nextPos - CellPos;
+        List<Vector3Int> path = Managers.Map.FindPath(CellPos, destPos, ignoreDestCollision: true);
+        if (path.Count < 2 || (_target != null && path.Count > 10))
+        {
+            _target = null;
+            State = CreatureState.Idle;
+            return;
+        }
 
-		if (moveCellDir.x > 0)
-			Dir = MoveDir.Right;
-		else if (moveCellDir.x < 0)
-			Dir = MoveDir.Left;
-		else if (moveCellDir.y > 0)
-			Dir = MoveDir.Up;
-		else if (moveCellDir.y < 0)
-			Dir = MoveDir.Down;
-		else
-			Dir = MoveDir.None;
+        Vector3Int nextPos = path[1];
+        Vector3Int moveCellDir = nextPos - CellPos;
 
-		if (Managers.Map.CanGo(nextPos) && Managers.Object.Find(nextPos) == null)
-		{
-			CellPos = nextPos;
-		}
-		else
-		{
-			State = CreatureState.Idle;
-		}
-	}
+        if (moveCellDir.x > 0)
+            Dir = MoveDir.Right;
+        else if (moveCellDir.x < 0)
+            Dir = MoveDir.Left;
+        else if (moveCellDir.y > 0)
+            Dir = MoveDir.Up;
+        else if (moveCellDir.y < 0)
+            Dir = MoveDir.Down;
+        else
+            Dir = MoveDir.None;
 
-	public override void OnDamaged()
-	{
-		GameObject effect = Managers.Resource.Instantiate("Effect/DieEffect");
-		effect.transform.position = transform.position;
-		effect.GetComponent<Animator>().Play("START");
-		GameObject.Destroy(effect, 0.5f);
+        // 이동 가능 여부 확인
+        if (Managers.Map.CanGo(nextPos) && Managers.Object.Find(nextPos) == null)
+        {
+            CellPos = nextPos;
+        }
+        else
+        {
+            State = CreatureState.Idle;
+        }
+    }
 
-		Managers.Object.Remove(gameObject);
-		Managers.Resource.Destroy(gameObject);
-	}
+    public override void OnDamaged()
+    {
+        GameObject effect = Managers.Resource.Instantiate("Effect/DieEffect");
+        effect.transform.position = transform.position;
+        effect.GetComponent<Animator>().Play("START");
+        GameObject.Destroy(effect, 0.5f);
 
-	IEnumerator CoPatrol()
-	{
-		int waitSeconds = Random.Range(1, 4);
-		yield return new WaitForSeconds(waitSeconds);
+        Managers.Object.Remove(gameObject);
+        Managers.Resource.Destroy(gameObject);
+    }
 
-		for (int i = 0; i < 10; i++)
-		{
-			int xRange = Random.Range(-5, 6);
-			int yRange = Random.Range(-5, 6);
-			Vector3Int randPos = CellPos + new Vector3Int(xRange, yRange, 0);
+    // Patrol 코루틴
+    IEnumerator CoPatrol()
+    {
+        int waitSeconds = Random.Range(1, 4);
+        yield return new WaitForSeconds(waitSeconds);
 
-			if (Managers.Map.CanGo(randPos) && Managers.Object.Find(randPos) == null)
-			{
-				_destCellPos = randPos;
-				State = CreatureState.Moving;
-				yield break;
-			}
-		}
+        for (int i = 0; i < 10; i++)
+        {
+            int xRange = Random.Range(-5, 6);
+            int yRange = Random.Range(-5, 6);
+            Vector3Int randPos = CellPos + new Vector3Int(xRange, yRange, 0);
 
-		State = CreatureState.Idle;
-	}
+            // 이동 가능 여부 확인
+            if (Managers.Map.CanGo(randPos) && Managers.Object.Find(randPos) == null)
+            {
+                _destCellPos = randPos;
+                State = CreatureState.Moving;
+                yield break;
+            }
+        }
 
-	IEnumerator CoSearch()
-	{
-		while (true)
-		{
-			yield return new WaitForSeconds(1);
+        State = CreatureState.Idle;
+    }
 
-			if (_target != null)
-				continue;
+    // Search 코루틴
+    IEnumerator CoSearch()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
 
-			_target = Managers.Object.Find((go) =>
-			{
-				PlayerController pc = go.GetComponent<PlayerController>();
-				if (pc == null)
-					return false;
+            if (_target != null)
+                continue;
 
-				Vector3Int dir = (pc.CellPos - CellPos);
-				if (dir.magnitude > _searchRange)
-					return false;
+            _target = Managers.Object.Find((go) =>
+            {
+                PlayerController pc = go.GetComponent<PlayerController>();
+                if (pc == null)
+                    return false;
 
-				return true;
-			});
-		}
-	}
+                Vector3Int dir = (pc.CellPos - CellPos);
+                if (dir.magnitude > _searchRange)
+                    return false;
+
+                return true;
+            });
+        }
+    }
 }

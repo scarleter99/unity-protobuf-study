@@ -6,74 +6,76 @@ using static Define;
 public class ArrowController : CreatureController
 {
 
-	protected override void Init()
-	{
-		switch (_lastDir)
-		{
-			case MoveDir.Up:
-				transform.rotation = Quaternion.Euler(0, 0, 0);
-				break;
-			case MoveDir.Down:
-				transform.rotation = Quaternion.Euler(0, 0, -180);
-				break;
-			case MoveDir.Left:
-				transform.rotation = Quaternion.Euler(0, 0, 90);
-				break;
-			case MoveDir.Right:
-				transform.rotation = Quaternion.Euler(0, 0, -90);
-				break;
-		}
+    protected override void Init()
+    {
+        // 방향 설정
+        switch (_lastDir)
+        {
+            case MoveDir.Up:
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case MoveDir.Down:
+                transform.rotation = Quaternion.Euler(0, 0, -180);
+                break;
+            case MoveDir.Left:
+                transform.rotation = Quaternion.Euler(0, 0, 90);
+                break;
+            case MoveDir.Right:
+                transform.rotation = Quaternion.Euler(0, 0, -90);
+                break;
+        }
 
-		State = CreatureState.Moving;
-		_speed = 15.0f;
+        State = CreatureState.Moving;
+        _speed = 15.0f;
 
-		base.Init();
-	}
+        base.Init();
+    }
 
-	protected override void UpdateAnimation()
-	{
+    protected override void UpdateAnimation()
+    {
 
-	}
+    }
 
-	protected override void MoveToNextPos()
-	{
-		Vector3Int destPos = CellPos;
+    // 실제 좌표 이동
+    protected override void MoveToNextPos()
+    {
+        Vector3Int destPos = CellPos;
 
-		switch (_dir)
-		{
-			case MoveDir.Up:
-				destPos += Vector3Int.up;
-				break;
-			case MoveDir.Down:
-				destPos += Vector3Int.down;
-				break;
-			case MoveDir.Left:
-				destPos += Vector3Int.left;
-				break;
-			case MoveDir.Right:
-				destPos += Vector3Int.right;
-				break;
-		}
+        switch (_dir)
+        {
+            case MoveDir.Up:
+                destPos += Vector3Int.up;
+                break;
+            case MoveDir.Down:
+                destPos += Vector3Int.down;
+                break;
+            case MoveDir.Left:
+                destPos += Vector3Int.left;
+                break;
+            case MoveDir.Right:
+                destPos += Vector3Int.right;
+                break;
+        }
 
-		if (Managers.Map.CanGo(destPos))
-		{
-			GameObject go = Managers.Object.Find(destPos);
-			if (go == null)
-			{
-				CellPos = destPos;
-			}
-			else
-			{
-				CreatureController cc = go.GetComponent<CreatureController>();
-				if (cc != null)
-					cc.OnDamaged();
+        if (Managers.Map.CanGo(destPos))
+        {
+            GameObject go = Managers.Object.Find(destPos);
+            if (go == null)
+            {
+                CellPos = destPos;
+            }
+            else
+            {
+                CreatureController cc = go.GetComponent<CreatureController>();
+                if (cc != null)
+                    cc.OnDamaged();
 
-				Managers.Resource.Destroy(gameObject);
-			}
-		}
-		else
-		{
-			Managers.Resource.Destroy(gameObject);
-		}
-	}
+                Managers.Resource.Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Managers.Resource.Destroy(gameObject);
+        }
+    }
 }
