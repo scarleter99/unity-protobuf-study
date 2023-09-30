@@ -6,6 +6,7 @@ using static Define;
 
 public class CreatureController : MonoBehaviour
 {
+    [SerializeField]
     public float _speed = 5.0f;
 
     public Vector3Int CellPos { get; set; } = Vector3Int.zero; // 현재 실제 좌표
@@ -13,6 +14,7 @@ public class CreatureController : MonoBehaviour
     protected Animator _animator;
     protected SpriteRenderer _sprite;
 
+    [SerializeField]
     protected CreatureState _state = CreatureState.Idle; // 현재 상태
     public virtual CreatureState State
     {
@@ -29,6 +31,7 @@ public class CreatureController : MonoBehaviour
     }
 
     protected MoveDir _lastDir = MoveDir.Down; // 현재 보는 방향
+    [SerializeField]
     protected MoveDir _dir = MoveDir.Down; // 현재 이동 방향
     public MoveDir Dir
     {
@@ -46,6 +49,22 @@ public class CreatureController : MonoBehaviour
         }
     }
 
+    // Vector 방향 반환
+    public MoveDir GetDirFromVec(Vector3Int dir)
+    {
+        if (dir.x > 0)
+            return MoveDir.Right;
+        else if (dir.x < 0)
+            return MoveDir.Left;
+        else if (dir.y > 0)
+            return MoveDir.Up;
+        else if (dir.y < 0)
+            return MoveDir.Down;
+        else
+            return MoveDir.None;
+    }
+
+    // 현재 좌표의 전방 좌표 반환
     public Vector3Int GetFrontCellPos()
     {
         Vector3Int cellPos = CellPos;

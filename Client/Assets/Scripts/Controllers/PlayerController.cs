@@ -151,7 +151,6 @@ public class PlayerController : CreatureController
         }
     }
 
-    // 공격 스킬 코루틴
     IEnumerator CoStartPunch()
     {
         // 피격 판정
@@ -170,7 +169,6 @@ public class PlayerController : CreatureController
         _coSkill = null;
     }
 
-    // 화살 스킬 코루틴
     IEnumerator CoStartShootArrow()
     {
         GameObject go = Managers.Resource.Instantiate("Creature/Arrow");
@@ -183,5 +181,10 @@ public class PlayerController : CreatureController
         yield return new WaitForSeconds(0.3f);
         State = CreatureState.Idle;
         _coSkill = null;
+    }
+
+    public override void OnDamaged()
+    {
+        Debug.Log("Player HIT !");
     }
 }
