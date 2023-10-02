@@ -18,7 +18,7 @@ public class ObjectManager
         _objects.Remove(go);
     }
 
-    // 해당 좌표에 있는 객체 확인
+    // 해당 좌표에 있는 GameObject 반환
     public GameObject Find(Vector3Int cellPos)
     {
         foreach (GameObject obj in _objects)
@@ -34,6 +34,7 @@ public class ObjectManager
         return null;
     }
 
+    // 조건을 만족하는 GameObject 반환
     public GameObject Find(Func<GameObject, bool> condition)
     {
         foreach (GameObject obj in _objects)

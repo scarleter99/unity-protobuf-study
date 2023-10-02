@@ -28,7 +28,7 @@ public struct PQNode : IComparable<PQNode>
 
 public class MapManager
 {
-    public Grid CurrentGrid { get; private set; }
+    public Grid CurrentGrid { get; private set; } // 현재 Grid
 
     public int MinX { get; set; }
     public int MaxX { get; set; }
