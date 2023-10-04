@@ -1,7 +1,6 @@
 syntax = "proto3";
 
 package Protocol;
-import "google/protobuf/timestamp.proto";
 option csharp_namespace = "Google.Protobuf.Protocol";
 
 enum MsgId {
@@ -41,7 +40,6 @@ message Person {
   }
 
   repeated PhoneNumber phones = 5;
-  google.protobuf.Timestamp last_updated = 6;
 }
 
 // Our address book file is just one of these.

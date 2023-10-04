@@ -24,26 +24,25 @@ namespace Google.Protobuf.Protocol {
     static ProtocolReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg5Qcm90b2NvbC5wcm90bxIIUHJvdG9jb2waH2dvb2dsZS9wcm90b2J1Zi90",
-            "aW1lc3RhbXAucHJvdG8iGQoGQ19DaGF0Eg8KB2NvbnRleHQYASABKAkiGQoG",
-            "U19DaGF0Eg8KB2NvbnRleHQYASABKAkiHgoLU19FbnRlckdhbWUSDwoHY29u",
-            "dGV4dBgBIAEoCSKdAgoGUGVyc29uEhQKDHBhY2tldEhlYWRlchgBIAEoBRIM",
-            "CgRuYW1lGAIgASgJEgoKAmlkGAMgASgFEg0KBWVtYWlsGAQgASgJEiwKBnBo",
-            "b25lcxgFIAMoCzIcLlByb3RvY29sLlBlcnNvbi5QaG9uZU51bWJlchIwCgxs",
-            "YXN0X3VwZGF0ZWQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1w",
-            "GkcKC1Bob25lTnVtYmVyEg4KBm51bWJlchgBIAEoCRIoCgR0eXBlGAIgASgO",
-            "MhouUHJvdG9jb2wuUGVyc29uLlBob25lVHlwZSIrCglQaG9uZVR5cGUSCgoG",
-            "TU9CSUxFEAASCAoESE9NRRABEggKBFdPUksQAiIvCgtBZGRyZXNzQm9vaxIg",
-            "CgZwZW9wbGUYASADKAsyEC5Qcm90b2NvbC5QZXJzb24qPQoFTXNnSWQSCgoG",
-            "UEVSU09OEAASCgoGQ19DSEFUEAESCgoGU19DSEFUEAISEAoMU19FTlRFUl9H",
-            "QU1FEANCG6oCGEdvb2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
+            "Cg5Qcm90b2NvbC5wcm90bxIIUHJvdG9jb2wiGQoGQ19DaGF0Eg8KB2NvbnRl",
+            "eHQYASABKAkiGQoGU19DaGF0Eg8KB2NvbnRleHQYASABKAkiHgoLU19FbnRl",
+            "ckdhbWUSDwoHY29udGV4dBgBIAEoCSLrAQoGUGVyc29uEhQKDHBhY2tldEhl",
+            "YWRlchgBIAEoBRIMCgRuYW1lGAIgASgJEgoKAmlkGAMgASgFEg0KBWVtYWls",
+            "GAQgASgJEiwKBnBob25lcxgFIAMoCzIcLlByb3RvY29sLlBlcnNvbi5QaG9u",
+            "ZU51bWJlchpHCgtQaG9uZU51bWJlchIOCgZudW1iZXIYASABKAkSKAoEdHlw",
+            "ZRgCIAEoDjIaLlByb3RvY29sLlBlcnNvbi5QaG9uZVR5cGUiKwoJUGhvbmVU",
+            "eXBlEgoKBk1PQklMRRAAEggKBEhPTUUQARIICgRXT1JLEAIiLwoLQWRkcmVz",
+            "c0Jvb2sSIAoGcGVvcGxlGAEgAygLMhAuUHJvdG9jb2wuUGVyc29uKj0KBU1z",
+            "Z0lkEgoKBlBFUlNPThAAEgoKBkNfQ0hBVBABEgoKBlNfQ0hBVBACEhAKDFNf",
+            "RU5URVJfR0FNRRADQhuqAhhHb29nbGUuUHJvdG9idWYuUHJvdG9jb2xiBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
+          new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.MsgId), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_Chat), global::Google.Protobuf.Protocol.C_Chat.Parser, new[]{ "Context" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Chat), global::Google.Protobuf.Protocol.S_Chat.Parser, new[]{ "Context" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_EnterGame), global::Google.Protobuf.Protocol.S_EnterGame.Parser, new[]{ "Context" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.Person), global::Google.Protobuf.Protocol.Person.Parser, new[]{ "PacketHeader", "Name", "Id", "Email", "Phones", "LastUpdated" }, null, new[]{ typeof(global::Google.Protobuf.Protocol.Person.Types.PhoneType) }, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.Person.Types.PhoneNumber), global::Google.Protobuf.Protocol.Person.Types.PhoneNumber.Parser, new[]{ "Number", "Type" }, null, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.Person), global::Google.Protobuf.Protocol.Person.Parser, new[]{ "PacketHeader", "Name", "Id", "Email", "Phones" }, null, new[]{ typeof(global::Google.Protobuf.Protocol.Person.Types.PhoneType) }, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.Person.Types.PhoneNumber), global::Google.Protobuf.Protocol.Person.Types.PhoneNumber.Parser, new[]{ "Number", "Type" }, null, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.AddressBook), global::Google.Protobuf.Protocol.AddressBook.Parser, new[]{ "People" }, null, null, null, null)
           }));
     }
@@ -478,7 +477,6 @@ namespace Google.Protobuf.Protocol {
       id_ = other.id_;
       email_ = other.email_;
       phones_ = other.phones_.Clone();
-      lastUpdated_ = other.lastUpdated_ != null ? other.lastUpdated_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -544,17 +542,6 @@ namespace Google.Protobuf.Protocol {
       get { return phones_; }
     }
 
-    /// <summary>Field number for the "last_updated" field.</summary>
-    public const int LastUpdatedFieldNumber = 6;
-    private global::Google.Protobuf.WellKnownTypes.Timestamp lastUpdated_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.WellKnownTypes.Timestamp LastUpdated {
-      get { return lastUpdated_; }
-      set {
-        lastUpdated_ = value;
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Person);
@@ -573,7 +560,6 @@ namespace Google.Protobuf.Protocol {
       if (Id != other.Id) return false;
       if (Email != other.Email) return false;
       if(!phones_.Equals(other.phones_)) return false;
-      if (!object.Equals(LastUpdated, other.LastUpdated)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -585,7 +571,6 @@ namespace Google.Protobuf.Protocol {
       if (Id != 0) hash ^= Id.GetHashCode();
       if (Email.Length != 0) hash ^= Email.GetHashCode();
       hash ^= phones_.GetHashCode();
-      if (lastUpdated_ != null) hash ^= LastUpdated.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -616,10 +601,6 @@ namespace Google.Protobuf.Protocol {
         output.WriteString(Email);
       }
       phones_.WriteTo(output, _repeated_phones_codec);
-      if (lastUpdated_ != null) {
-        output.WriteRawTag(50);
-        output.WriteMessage(LastUpdated);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -641,9 +622,6 @@ namespace Google.Protobuf.Protocol {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Email);
       }
       size += phones_.CalculateSize(_repeated_phones_codec);
-      if (lastUpdated_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LastUpdated);
-      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -668,12 +646,6 @@ namespace Google.Protobuf.Protocol {
         Email = other.Email;
       }
       phones_.Add(other.phones_);
-      if (other.lastUpdated_ != null) {
-        if (lastUpdated_ == null) {
-          LastUpdated = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-        }
-        LastUpdated.MergeFrom(other.LastUpdated);
-      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -703,13 +675,6 @@ namespace Google.Protobuf.Protocol {
           }
           case 42: {
             phones_.AddEntriesFrom(input, _repeated_phones_codec);
-            break;
-          }
-          case 50: {
-            if (lastUpdated_ == null) {
-              LastUpdated = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-            }
-            input.ReadMessage(LastUpdated);
             break;
           }
         }
