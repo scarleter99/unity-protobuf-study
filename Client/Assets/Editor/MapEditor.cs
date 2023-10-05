@@ -13,9 +13,10 @@ public class MapEditor
 
 #if UNITY_EDITOR
 
-    // 충돌 타일 위치 파일 생성
+    // Unity 상단 메뉴의 Tools에 생성
     // 단축키 지정: % (Ctrl), # (Shift), & (Alt)
     [MenuItem("Tools/GenerateMap %#h")]
+    // 충돌 타일 위치 파일 생성
     private static void GenerateMap()
     {
         GameObject[] gameObjects = Resources.LoadAll<GameObject>("Prefabs/Map");
