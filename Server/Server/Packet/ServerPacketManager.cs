@@ -1,4 +1,4 @@
-using Google.Protobuf;
+﻿using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using ServerCore;
 using System;
@@ -48,6 +48,7 @@ class PacketManager
 			action.Invoke(session, pkt);
 	}
 
+	// 프로토콜 id에 해당하는 PacketHandler 반환
 	public Action<PacketSession, IMessage> GetPacketHandler(ushort id)
 	{
 		Action<PacketSession, IMessage> action = null;
