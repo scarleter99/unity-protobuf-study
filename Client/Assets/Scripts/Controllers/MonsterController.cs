@@ -22,7 +22,7 @@ public class MonsterController : CreatureController
     float _skillRange = 1.0f;
 
     [SerializeField]
-    bool _rangedSkill = false; // 근거리, 원거리 타입 구분
+    bool _rangedSkill = false; // 원거리 스킬 구분
 
     public override CreatureState State
     {
@@ -138,7 +138,7 @@ public class MonsterController : CreatureController
         effect.GetComponent<Animator>().Play("START");
         GameObject.Destroy(effect, 0.5f);
 
-        Managers.Object.Remove(gameObject);
+        Managers.Object.Remove(Id);
         Managers.Resource.Destroy(gameObject);
     }
 
