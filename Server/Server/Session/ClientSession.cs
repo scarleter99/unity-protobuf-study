@@ -35,11 +35,15 @@ namespace Server
         {
             Console.WriteLine($"OnConnected : {endPoint}");
 
+            // 접속 Client의 Player 생성
             MyPlayer = PlayerManager.Instance.Add();
             {
                 MyPlayer.Info.Name = $"Player_{MyPlayer.Info.PlayerId}";
-                MyPlayer.Info.PosX = 0;
-                MyPlayer.Info.PosY = 0;
+                MyPlayer.Info.PosInfo.State = CreatureState.Idle;
+                MyPlayer.Info.PosInfo.MoveDir = MoveDir.None;
+                MyPlayer.Info.PosInfo.PosX = 0;
+                MyPlayer.Info.PosInfo.PosY = 0;
+
                 MyPlayer.Session = this;
             }
 

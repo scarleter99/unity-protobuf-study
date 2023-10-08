@@ -11,7 +11,7 @@ namespace Server.Game
 
 		object _lock = new object();
 		Dictionary<int, GameRoom> _rooms = new Dictionary<int, GameRoom>(); // GameRoom Id - GameRoom
-		int _roomId = 1; // 현재 GameRoom 수
+		int _roomId = 1; // 다음 GameRoom Id
 
 		public GameRoom Add()
 		{
