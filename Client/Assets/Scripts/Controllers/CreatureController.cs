@@ -29,6 +29,12 @@ public class CreatureController : MonoBehaviour
         }
     }
 
+    public void SyncPos()
+    {
+        Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);
+        transform.position = destPos;
+    }
+
     // 현재 좌표
     public Vector3Int CellPos
     {
@@ -217,7 +223,6 @@ public class CreatureController : MonoBehaviour
 
         State = CreatureState.Idle;
         Dir = MoveDir.None;
-        CellPos = new Vector3Int(0, 0, 0);
         UpdateAnimation();
     }
 
@@ -244,6 +249,7 @@ public class CreatureController : MonoBehaviour
     {
     }
 
+    // 스르륵 이동하는 것을 처리
     protected virtual void UpdateMoving()
     {
         Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);
