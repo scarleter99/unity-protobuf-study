@@ -38,9 +38,9 @@ public class MapManager
     public int SizeX { get { return MaxX - MinX + 1; } }
     public int SizeY { get { return MaxY - MinY + 1; } }
 
-    bool[,] _collision;
+    bool[,] _collision; // 충돌 타일
 
-	// 이동 가능 타일 판별
+    // 이동 가능 여부 체크
     public bool CanGo(Vector3Int cellPos)
     {
         if (cellPos.x < MinX || cellPos.x > MaxX)

@@ -15,9 +15,15 @@ public class MapEditor
 
     // Unity 상단 메뉴의 Tools에 생성
     // 단축키 지정: % (Ctrl), # (Shift), & (Alt)
-    [MenuItem("Tools/GenerateMap %#h")]
-    // 충돌 타일 위치 파일 생성
+    [MenuItem("Tools/GenerateMap %#g")]
     private static void GenerateMap()
+    {
+        GenerateByPath("Assets/Resources/Map");
+        GenerateByPath("../Common/MapData");
+    }
+
+    // 충돌 타일 위치 파일 생성
+    private static void GenerateByPath(string pathPrefix)
     {
         GameObject[] gameObjects = Resources.LoadAll<GameObject>("Prefabs/Map");
 
@@ -27,7 +33,7 @@ public class MapEditor
             Tilemap tm = Util.FindChild<Tilemap>(go, "Tilemap_Collision", true);
 
             // 맵 이름 그대로 txt 파일 생성
-            using (var writer = File.CreateText($"Assets/Resources/Map/{go.name}.txt"))
+            using (var writer = File.CreateText($"{pathPrefix}/{go.name}.txt"))
             {
                 // 맵 크기 입력
                 writer.WriteLine(tmBase.cellBounds.xMin);
