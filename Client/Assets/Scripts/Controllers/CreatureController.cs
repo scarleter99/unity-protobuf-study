@@ -12,7 +12,7 @@ public class CreatureController : MonoBehaviour
     [SerializeField]
     public float _speed = 5.0f;
 
-    protected bool _updated = false;
+    protected bool _updated = false; // PosInfo 갱신 여부
 
     PositionInfo _positionInfo = new PositionInfo(); // 현재 위치 정보
     public PositionInfo PosInfo

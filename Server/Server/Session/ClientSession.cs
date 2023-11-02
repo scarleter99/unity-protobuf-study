@@ -9,7 +9,6 @@ using System.Net;
 using Google.Protobuf.Protocol;
 using Google.Protobuf;
 using Server.Game;
-using Server.Game.Object;
 
 namespace Server
 {
@@ -24,7 +23,6 @@ namespace Server
             string msgName = packet.Descriptor.Name.Replace("_", string.Empty);
             MsgId msgId = (MsgId)Enum.Parse(typeof(MsgId), msgName);
             ushort size = (ushort)packet.CalculateSize();
-
             byte[] sendBuffer = new byte[size + 4];
             Array.Copy(BitConverter.GetBytes((ushort)(size + 4)), 0, sendBuffer, 0, sizeof(ushort));
             Array.Copy(BitConverter.GetBytes((ushort)msgId), 0, sendBuffer, 2, sizeof(ushort));
@@ -37,9 +35,9 @@ namespace Server
             Console.WriteLine($"OnConnected : {endPoint}");
 
             // 접속 Client의 Player 생성
-            MyPlayer = PlayerManager.Instance.Add();
+            MyPlayer = ObjectManager.Instance.Add<Player>();
             {
-                MyPlayer.Info.Name = $"Player_{MyPlayer.Info.PlayerId}";
+                MyPlayer.Info.Name = $"Player_{MyPlayer.Info.ObjectId}";
                 MyPlayer.Info.PosInfo.State = CreatureState.Idle;
                 MyPlayer.Info.PosInfo.MoveDir = MoveDir.Down;
                 MyPlayer.Info.PosInfo.PosX = 0;
@@ -58,7 +56,7 @@ namespace Server
 
         public override void OnDisconnected(EndPoint endPoint)
         {
-            RoomManager.Instance.Find(1).LeaveGame(MyPlayer.Info.PlayerId);
+            RoomManager.Instance.Find(1).LeaveGame(MyPlayer.Info.ObjectId);
 
             SessionManager.Instance.Remove(this);
 

@@ -17,7 +17,7 @@ namespace Server.Game
 		public GameRoom Room { get; set; }
 
 		public ObjectInfo Info { get; set; } = new ObjectInfo();
-		public PositionInfo PosInfo { get; private set; } = new PositionInfo();
+		public PositionInfo PosInfo { get; private set; } = new PositionInfo(); // 현재 위치 정보
 
 		public GameObject()
 		{
@@ -38,12 +38,13 @@ namespace Server.Game
 			}
 		}
 
-		public Vector2Int GetFrontCellPos()
+        // 현재 좌표의 전방 좌표 반환
+        public Vector2Int GetFrontCellPos()
 		{
 			return GetFrontCellPos(PosInfo.MoveDir);
 		}
 
-		public Vector2Int GetFrontCellPos(MoveDir dir)
+        public Vector2Int GetFrontCellPos(MoveDir dir)
 		{
 			Vector2Int cellPos = CellPos;
 

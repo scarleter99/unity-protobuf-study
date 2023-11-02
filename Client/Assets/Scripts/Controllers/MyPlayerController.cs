@@ -128,6 +128,7 @@ public class MyPlayerController : PlayerController
         CheckUpdatedFlag();
     }
 
+    // PosInfo 갱신 여부 확인 후 서버와 동기화
     protected override void CheckUpdatedFlag()
     {
         if (_updated)
