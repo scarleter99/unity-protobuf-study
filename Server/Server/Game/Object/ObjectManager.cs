@@ -10,7 +10,7 @@ namespace Server.Game
         public static ObjectManager Instance { get; } = new ObjectManager();
 
         object _lock = new object();
-        Dictionary<int, Player> _players = new Dictionary<int, Player>(); // 플레이어만 관리
+        Dictionary<int, Player> _players = new Dictionary<int, Player>(); // Player만 관리
 
         int _counter = 0; // 현재 GameObject 수
 
@@ -60,6 +60,7 @@ namespace Server.Game
             return false;
         }
 
+        // ID로 Player 탐색 후 반환
         public Player Find(int objectId)
         {
             GameObjectType objectType = GetObjectTypeById(objectId);

@@ -57,11 +57,11 @@ namespace Server.Game
         public int SizeX { get { return MaxX - MinX + 1; } }
         public int SizeY { get { return MaxY - MinY + 1; } }
 
-        bool[,] _collision; // 충돌 타일
-        Player[,] _players; // 플레이어 타일
+        bool[,] _collision; // 충돌 지형 타일
+        GameObject[,] _objects; // GameObject 타일
 
         // 이동 가능 여부 체크
-        // Param: checkObjects = 물체만 체크
+        // Param: checkObjects = GameObject 체크 여부
         public bool CanGo(Vector2Int cellPos, bool checkObjects = true)
         {
             if (cellPos.x < MinX || cellPos.x > MaxX)
@@ -87,7 +87,7 @@ namespace Server.Game
             return _objects[y, x];
         }
 
-        // 플레이어 이동
+        // GameObject를 현재 위치에서 제거
         public bool ApplyLeave(GameObject gameObject)
         {
             PositionInfo posInfo = gameObject.PosInfo;
@@ -106,6 +106,7 @@ namespace Server.Game
             return true;
         }
 
+        // GameObject를 dest로 이동
         public bool ApplyMove(GameObject gameObject, Vector2Int dest)
         {
             ApplyLeave(gameObject);

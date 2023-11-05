@@ -22,6 +22,7 @@ namespace Server.Game
             Map.LoadMap(mapId);
         }
 
+        // Projectile 업데이트
         public void Update()
         {
             lock (_lock)

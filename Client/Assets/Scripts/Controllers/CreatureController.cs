@@ -29,6 +29,7 @@ public class CreatureController : MonoBehaviour
         }
     }
 
+    // 타일에 위치 맞추기
     public void SyncPos()
     {
         Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(0.5f, 0.5f);

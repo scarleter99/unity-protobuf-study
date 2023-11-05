@@ -9,7 +9,7 @@ namespace Server.Game
 	{
 		public GameObject Owner { get; set; }
 
-		long _nextMoveTick = 0;
+		long _nextMoveTick = 0; // 다음 이동 시간
 
 		public override void Update()
 		{
