@@ -127,6 +127,7 @@ namespace Server.Game
             return true;
         }
 
+        // Map 데이터 로드
         public void LoadMap(int mapId, string pathPrefix = "../../../../../Common/MapData")
         {
             string mapName = "Map_" + mapId.ToString("000");

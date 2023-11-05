@@ -7,6 +7,7 @@ namespace Server.Game
 {
     public class ObjectManager
     {
+        // Singleton
         public static ObjectManager Instance { get; } = new ObjectManager();
 
         object _lock = new object();
