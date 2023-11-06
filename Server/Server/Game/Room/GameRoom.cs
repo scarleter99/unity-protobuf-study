@@ -23,11 +23,11 @@ namespace Server.Game
             Map.LoadMap(mapId);
         }
 
-        // Projectile 업데이트
         public void Update()
         {
             lock (_lock)
             {
+                // Projectile 업데이트
                 foreach (Projectile projectile in _projectiles.Values)
                 {
                     projectile.Update();
@@ -222,6 +222,7 @@ namespace Server.Game
                             arrow.PosInfo.MoveDir = player.PosInfo.MoveDir;
                             arrow.PosInfo.PosX = player.PosInfo.PosX;
                             arrow.PosInfo.PosY = player.PosInfo.PosY;
+                            arrow.Speed = skillData.projectile.speed;
                             EnterGame(arrow);
                         }
                         break;

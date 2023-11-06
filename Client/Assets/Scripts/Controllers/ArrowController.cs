@@ -6,7 +6,6 @@ using static Define;
 
 public class ArrowController : CreatureController
 {
-
     protected override void Init()
     {
         // 방향 설정
@@ -27,7 +26,6 @@ public class ArrowController : CreatureController
         }
 
         State = CreatureState.Moving;
-        _speed = 15.0f;
 
         base.Init();
     }
