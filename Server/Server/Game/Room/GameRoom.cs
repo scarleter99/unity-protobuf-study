@@ -50,18 +50,29 @@ namespace Server.Game
                     _players.Add(gameObject.Id, player);
                     player.Room = this;
 
+                    // 스폰 좌표를 실제 좌표로 설정
+                    Map.ApplyMove(player, new Vector2Int(player.CellPos.x, player.CellPos.y));
+
                     // 본인한테 정보 전송
                     {
                         S_EnterGame enterPacket = new S_EnterGame();
                         enterPacket.Player = player.Info;
                         player.Session.Send(enterPacket);
 
+                        // 현재 맵에 있는 GameObject 정보 전송
                         S_Spawn spawnPacket = new S_Spawn();
                         foreach (Player p in _players.Values)
                         {
                             if (player != p)
                                 spawnPacket.Objects.Add(p.Info);
                         }
+
+                        foreach (Monster m in _monsters.Values)
+                            spawnPacket.Objects.Add(m.Info);
+
+                        foreach (Projectile p in _projectiles.Values)
+                            spawnPacket.Objects.Add(p.Info);
+
                         player.Session.Send(spawnPacket);
                     }
                 }
@@ -70,6 +81,8 @@ namespace Server.Game
                     Monster monster = gameObject as Monster;
                     _monsters.Add(gameObject.Id, monster);
                     monster.Room = this;
+
+                    Map.ApplyMove(monster, new Vector2Int(monster.CellPos.x, monster.CellPos.y));
                 }
                 else if (type == GameObjectType.Projectile)
                 {

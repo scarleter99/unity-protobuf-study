@@ -58,7 +58,7 @@ namespace Server.Game
         public int SizeY { get { return MaxY - MinY + 1; } }
 
         bool[,] _collision; // 충돌 지형 타일
-        GameObject[,] _objects; // GameObject 타일
+        GameObject[,] _objects; // GameObject 실제 좌표 타일
 
         // 이동 가능 여부 체크
         // Param: checkObjects = GameObject 체크 여부
@@ -74,7 +74,7 @@ namespace Server.Game
             return !_collision[y, x] && (!checkObjects || _objects[y, x] == null);
         }
 
-        // 해당 위치의 플레이어 반환
+        // cellPos에 위치한 플레이어 반환
         public GameObject Find(Vector2Int cellPos)
         {
             if (cellPos.x < MinX || cellPos.x > MaxX)
@@ -87,7 +87,7 @@ namespace Server.Game
             return _objects[y, x];
         }
 
-        // GameObject를 현재 위치에서 제거
+        // GameObject를 현재 좌표에서 제거
         public bool ApplyLeave(GameObject gameObject)
         {
             PositionInfo posInfo = gameObject.PosInfo;

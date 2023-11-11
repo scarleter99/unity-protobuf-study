@@ -72,15 +72,6 @@ public class ObjectManager
         Managers.Resource.Destroy(go);
     }
 
-    public void RemoveMyPlayer()
-    {
-        if (MyPlayer == null)
-            return;
-
-        Remove(MyPlayer.Id);
-        MyPlayer = null;
-    }
-
     public GameObject FindById(int id)
     {
         GameObject go = null;
@@ -88,8 +79,8 @@ public class ObjectManager
         return go;
     }
 
-    // 해당 좌표에 있는 GameObject 반환
-    public GameObject Find(Vector3Int cellPos)
+    // cellPos에 있는 Creature 반환
+    public GameObject FindCreature(Vector3Int cellPos)
     {
         foreach (GameObject obj in _objects.Values)
         {
@@ -121,5 +112,6 @@ public class ObjectManager
         foreach (GameObject obj in _objects.Values)
             Managers.Resource.Destroy(obj);
         _objects.Clear();
+        MyPlayer = null;
     }
 }
