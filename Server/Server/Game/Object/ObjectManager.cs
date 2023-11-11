@@ -61,7 +61,7 @@ namespace Server.Game
             return false;
         }
 
-        // ID로 Player 탐색 후 반환
+        // ID로 Player 탐색
         public Player Find(int objectId)
         {
             GameObjectType objectType = GetObjectTypeById(objectId);

@@ -8,7 +8,7 @@ using static Define;
 public class BaseController : MonoBehaviour
 {
     public int Id { get; set; }
-
+    
     StatInfo _stat = new StatInfo();
     public virtual StatInfo Stat
     {
@@ -63,7 +63,6 @@ public class BaseController : MonoBehaviour
         transform.position = destPos;
     }
 
-    // 현재 좌표
     public Vector3Int CellPos
     {
         get
@@ -85,7 +84,6 @@ public class BaseController : MonoBehaviour
     protected Animator _animator;
     protected SpriteRenderer _sprite;
 
-    // 현재 상태
     public virtual CreatureState State
     {
         get { return PosInfo.State; }
@@ -116,7 +114,7 @@ public class BaseController : MonoBehaviour
         }
     }
 
-    // Vector를 방향으로 전환 후 반환
+    // Vector를 방향으로 전환
     public MoveDir GetDirFromVec(Vector3Int dir)
     {
         if (dir.x > 0)
