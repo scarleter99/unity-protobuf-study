@@ -26,6 +26,12 @@ namespace Server.Game
             set { Stat.Speed = value; }
         }
 
+        public int Hp
+        {
+            get { return Stat.Hp; }
+            set { Stat.Hp = Math.Clamp(value, 0, Stat.MaxHp); }
+        }
+
         // 현재 보는 방향
         public MoveDir Dir
         {
