@@ -47,7 +47,8 @@ namespace Server
             while (true)
             {
                 //JobTimer.Instance.Flush();
-                RoomManager.Instance.Find(1).Update();
+                GameRoom room = RoomManager.Instance.Find(1);
+                room.Push(room.Update);
                 //Thread.Sleep(100);
             }
         }
