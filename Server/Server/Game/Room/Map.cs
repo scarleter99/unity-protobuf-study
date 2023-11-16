@@ -101,10 +101,8 @@ namespace Server.Game
         {
             if (gameObject.Room == null)
                 return false;
-            if (gameObject.Room.Map == this)
-            {
+            if (gameObject.Room.Map != this)
                 return false;
-            }
 
             PositionInfo posInfo = gameObject.PosInfo;
             if (posInfo.PosX < MinX || posInfo.PosX > MaxX)
@@ -129,10 +127,8 @@ namespace Server.Game
 
             if (gameObject.Room == null)
                 return false;
-            if (gameObject.Room.Map == this)
-            {
+            if (gameObject.Room.Map != this)
                 return false;
-            }
 
             PositionInfo posInfo = gameObject.PosInfo;
             if (CanGo(dest, true) == false)
