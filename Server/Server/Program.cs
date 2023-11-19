@@ -20,6 +20,7 @@ namespace Server
         static Listener _listener = new Listener();
         static List<System.Timers.Timer> _timers = new List<System.Timers.Timer>();
 
+        // tick 마다 room.Update() 실행
         static void TickRoom(GameRoom room, int tick = 100)
         {
             var timer = new System.Timers.Timer();

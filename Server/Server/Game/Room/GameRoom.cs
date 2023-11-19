@@ -23,17 +23,9 @@ namespace Server.Game
 
             // TEMP
             Monster monster = ObjectManager.Instance.Add<Monster>();
+            monster.Info.Name = $"Monster_{monster.Info.ObjectId}";
             monster.CellPos = new Vector2Int(5, 5);
             EnterGame(monster);
-
-            TestTimer();
-        }
-
-        // TEST
-        void TestTimer()
-        {
-            //Console.WriteLine("TestTimer");
-            PushAfter(100, TestTimer);
         }
 
         // 누군가 주기적으로 호출해줘야 한다
@@ -66,7 +58,7 @@ namespace Server.Game
                 _players.Add(gameObject.Id, player);
                 player.Room = this;
 
-                    // 스폰 좌표를 실제 좌표로 설정
+                // 스폰 좌표를 실제 좌표로 설정
                 Map.ApplyMove(player, new Vector2Int(player.CellPos.x, player.CellPos.y));
 
                 // 본인한테 정보 전송
@@ -144,8 +136,8 @@ namespace Server.Game
                 if (_monsters.Remove(objectId, out monster) == false)
                     return;
 
-                monster.Room = null;
                 Map.ApplyLeave(monster);
+                monster.Room = null;
             }
             else if (type == GameObjectType.Projectile)
             {
@@ -236,6 +228,7 @@ namespace Server.Game
                         if (arrow == null)
                             return;
 
+                        //MyPlayer.Info.Name = $"Player_{MyPlayer.Info.ObjectId}";
                         arrow.Owner = player;
                         arrow.Data = skillData;
                         arrow.PosInfo.State = CreatureState.Moving;
