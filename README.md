@@ -34,4 +34,4 @@
 - JSON 파일을 이용한 데이터 관리
 
 ## 링크
-블로그: https://velog.io/@scarleter99/series/Unity-MMO-%EC%BB%A8%ED%85%90%EC%B8%A0-%EA%B5%AC%ED%98%84
+블로그: https://velog.io/@scarleter99/series/Unity-MMO-컨텐츠-구현
