@@ -17,14 +17,14 @@
 
 ## 프로젝트 특징
 
-#### Unity Engine
+### Unity Engine
 
 - 유한상태머신을 이용한 상태 처리
 - TileMap을 이용한 맵 설계
 - 서버 연동을 고려한 GameObject Controller 구현
 - 서버와의 패킷 교환 및 처리 구현
 
-#### C# Server
+### C# Server
 
 - 멀티플레이 환경 설계
   - 실시간 GameObect 데이터를 서버에서 관리 및 처리
