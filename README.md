@@ -32,3 +32,6 @@
 - A* 알고리즘을 이용한 몬스터 AI 설계
 - 멀티쓰레드 환경에 적합한 Job 시스템 구현
 - JSON 파일을 이용한 데이터 관리
+
+## 링크
+블로그: https://velog.io/@scarleter99/series/Unity-MMO-%EC%BB%A8%ED%85%90%EC%B8%A0-%EA%B5%AC%ED%98%84
